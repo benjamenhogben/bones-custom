@@ -1,5 +1,25 @@
 <?php get_header(); ?>
 
+
+  <!-- RESPONSIVE IMAGE USING ADVANCED CUSTOM FIELDS IMAGE OBJECT
+  <img srcset="<?=// $ctaimg['sizes']['medium']; ?> 300w,
+  	<?=// $ctaimg['sizes']['large']; ?> 600w,
+  	<?=// $ctaimg['url']; ?> 1000w" src="<?=// $ctaimg['url']; ?>"
+  alt="<?=// $ctaimg['alt']; ?>">
+ -->
+  <!-- RESPONSIVE IMAGE USING FEATURED IMAGE -->
+	<?php if (get_the_post_thumbnail()) {
+	  $thumbnail_id = get_post_thumbnail_id( $post->ID );
+	  $alt = get_post_meta($thumbnail_id, '_wp_attachment_image_alt', true);?>
+	<img srcset="
+	  <?= the_post_thumbnail_url( 'thumbnail' ); // Thumbnail (default 150px x 150px max)?> 300w,
+	  <?= the_post_thumbnail_url( 'medium' );    // Medium resolution (default 300px x 300px max)?> 500w,
+	  <?=the_post_thumbnail_url( 'large' );      // Large resolution (default 640px x 640px max)?> 600w,
+	  <?=the_post_thumbnail_url( 'full' );       // Full resoltion?> 1000w"
+    src="<?=the_post_thumbnail_url()?>"
+    alt="<?= $alt; ?>">
+	<?php }; ?>
+
 			<div id="content">
 
 				<div id="inner-content" class="wrap cf">

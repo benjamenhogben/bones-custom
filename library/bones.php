@@ -326,6 +326,7 @@ function fa_icon_func($atts = []){
 	} else {
   	$o .= '<i class="fa ' . esc_html__($wporg_atts['class'], 'fa-icon') . '"></i>';
   }
+
   // return output
   return $o;
 }

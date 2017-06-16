@@ -305,7 +305,7 @@ function bones_excerpt_more($more) {
 	return '...  <a class="excerpt-read-more" href="'. get_permalink( $post->ID ) . '" title="'. __( 'Read ', 'bonestheme' ) . esc_attr( get_the_title( $post->ID ) ).'">'. __( 'Read more &raquo;', 'bonestheme' ) .'</a>';
 }
 
-function fa_icon_func($atts = [], $tag = ''){
+function fa_icon_func($atts = []){
   $atts = array_change_key_case((array)$atts, CASE_LOWER);
   // normalize attribute keys, lowercase
   $atts = array_change_key_case((array)$atts, CASE_LOWER);
@@ -314,19 +314,18 @@ function fa_icon_func($atts = [], $tag = ''){
   $wporg_atts = shortcode_atts([
         		                       'class' => 'fa-facebook',
     		                           'link'  => ''
-                               ], $atts, $tag);
+                               ], $atts);
 
   $link = $wporg_atts['link'];
 
   // start output
-
   $o = '';
 
-  if(!is_null($link)){
-     $o .= '<a href="'. esc_html__($link, 'fa-icon') .'"><i class="fa ' . esc_html__($wporg_atts['class'], 'fa-icon') . '"></i></a>';  }
-    else{
-      $o .= '<i class="fa ' . esc_html__($wporg_atts['class'], 'fa-icon') . '"></i>';
-    }
+  if(!empty($link)){
+    $o .= '<a href="'. esc_html__($link, 'fa-icon') .'"><i class="fa ' . esc_html__($wporg_atts['class'], 'fa-icon') . '"></i></a>';
+	} else {
+  	$o .= '<i class="fa ' . esc_html__($wporg_atts['class'], 'fa-icon') . '"></i>';
+  }
   // return output
   return $o;
 }

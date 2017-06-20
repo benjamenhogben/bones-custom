@@ -170,20 +170,14 @@ function bones_scripts_and_styles()
 
   // None Bones Scripts and styles
   //Register
-  wp_register_style('owl_css', get_template_directory_uri() . '/library/plugins/owl-carousel/owl.carousel.min.css');
-  wp_register_script('owl-js', get_template_directory_uri() . '/library/plugins/owl-carousel/owl.carousel.min.js', array('jquery'), '', true);
+  wp_register_style('owl_css', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css');
+  wp_register_script('owl-js', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js', array('jquery'), '', true);
 
-  
-  wp_register_style('jquery-mobile_css', 'http://code.jquery.com/mobile/1.0/jquery.mobile-1.0.min.css');
-  wp_register_script('jquery-mobile', 'https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js', array('jquery'), '', true);
   //wp_register_script('panel-mobile', 'https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js', array('jquery'), '', true);
-
 
   //Enqueue
   wp_enqueue_style('owl_css');
-  wp_enqueue_style('jquery-mobile_css');
   wp_enqueue_script('owl_js');
-  wp_enqueue_script('jquery-mobile');
   //wp_enqueue_script('panel-mobile');
 }
 

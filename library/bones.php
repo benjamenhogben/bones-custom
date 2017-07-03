@@ -134,50 +134,52 @@ function bones_scripts_and_styles()
 
   if (!is_admin()) {
 
-        // modernizr (without media query polyfill)
-        wp_register_script('bones-modernizr', get_template_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false);
+    // modernizr (without media query polyfill)
+    wp_register_script('bones-modernizr', get_template_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false);
 
-        // register main stylesheet
-        wp_register_style('bones-stylesheet', get_template_directory_uri() . '/library/css/style.css', array(), '', 'all');
+    // register main stylesheet
+    wp_register_style('bones-stylesheet', get_template_directory_uri() . '/library/css/style.css', array(), '', 'all');
 
-        // ie-only style sheet
-        wp_register_style('bones-ie-only', get_template_directory_uri() . '/library/css/ie.css', array(), '');
+    // ie-only style sheet
+    wp_register_style('bones-ie-only', get_template_directory_uri() . '/library/css/ie.css', array(), '');
 
-        // comment reply script for threaded comments
-        if (is_singular() and comments_open() and (get_option('thread_comments') == 1)) {
-            wp_enqueue_script('comment-reply');
-        }
+    // comment reply script for threaded comments
+    if (is_singular() and comments_open() and (get_option('thread_comments') == 1)) {
+        wp_enqueue_script('comment-reply');
+    }
 
-        // enqueue styles and scripts
-          wp_enqueue_script('bones-modernizr');
+    // enqueue styles and scripts
+      wp_enqueue_script('bones-modernizr');
       wp_enqueue_style('bones-stylesheet');
       wp_enqueue_style('bones-ie-only');
 
       $wp_styles->add_data('bones-ie-only', 'conditional', 'lt IE 9'); // add conditional wrapper around ie stylesheet
 
-          /*
-          I recommend using a plugin to call jQuery
-          using the google cdn. That way it stays cached
-          and your site will load faster.
-          */
-          wp_register_script('jquery', 'https://code.jquery.com/jquery-1.9.1.min.js', array('jquery'), '', true);
+      wp_deregister_script('jquery'); //de-registers the wp included jquery to prevent conflict
+      wp_register_script('jquery', 'https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js', '', true);
       wp_enqueue_script('jquery');
 
-              //adding scripts file in the footer
-          wp_register_script('bones_js', get_template_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true);
+      //WebFont Loader for more info: https://github.com/typekit/webfontloader
+      wp_register_script('webfontloader', 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js', '', true);
+      wp_enqueue_script('webfontloader');
+
+
+      //adding scripts file in the footer
+      wp_register_script('bones_js', get_template_directory_uri() . '/library/js/scripts.min.js', array( 'jquery', 'webfontloader' ), '', true);
       wp_enqueue_script('bones_js');
   }
 
   // None Bones Scripts and styles
   //Register
-  wp_register_style('owl_css', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css');
-    wp_register_style('owl_css', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.css');
+    wp_register_style('owl_css', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css');
+    wp_register_style('owl_theme_css', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.theme.default.min.css');
     wp_register_script('owl-js', 'https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js', array('jquery'), '', true);
 
   //wp_register_script('panel-mobile', 'https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js', array('jquery'), '', true);
 
   //Enqueue
     wp_enqueue_style('owl_css');
+    wp_enqueue_style('owl_theme_css');
     wp_enqueue_script('owl_js');
   //wp_enqueue_script('panel-mobile');
 }

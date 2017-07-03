@@ -131,7 +131,19 @@ jQuery(document).ready(function($) {
 	WebFontConfig = {
 		google: {
 			families: ['Open Sans Condensed:300,700', 'Droid Serif:bold']
+		},
+		timeout: 2000,
+		active: function() {
+			sessionStorage.fonts = true;
 		}
 	};
+	(function() {
+		if (sessionStorage.fonts) {
+			console.log("Fonts installed.");
+			document.documentElement.classList.add('wf-active');
+		} else {
+			console.log("No fonts installed.");
+		}
+	})();
 
 }); /* end of as page load scripts */

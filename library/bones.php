@@ -177,7 +177,7 @@ function bones_scripts_and_styles()
   //wp_register_script('panel-mobile', 'https://cdnjs.cloudflare.com/ajax/libs/slideout/1.0.1/slideout.min.js', array('jquery'), '', true);
 
   //Enqueue
-  wp_enqueue_style('owl_css');
+    wp_enqueue_style('owl_css');
     wp_enqueue_script('owl_js');
   //wp_enqueue_script('panel-mobile');
 }

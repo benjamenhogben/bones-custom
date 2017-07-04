@@ -128,7 +128,7 @@ jQuery(document).ready(function($) {
 	 */
 	loadGravatars();
 
-	WebFontConfig = {
+	WebFont.load({
 		google: {
 			families: ['Open Sans Condensed:300,700', 'Droid Serif:bold']
 		},
@@ -136,7 +136,7 @@ jQuery(document).ready(function($) {
 		active: function() {
 			sessionStorage.fonts = true;
 		}
-	};
+	});
 	(function() {
 		if (sessionStorage.fonts) {
 			console.log("Fonts installed.");

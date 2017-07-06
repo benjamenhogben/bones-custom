@@ -18,6 +18,8 @@
  * returns object with viewport dimensions to match css in width and height properties
  * ( source: http://andylangton.co.uk/blog/development/get-viewport-size-width-and-height-javascript )
  */
+
+//this could be updated to Modernizer's .mq method: https://modernizr.com/docs/#mq
 function updateViewportDimensions() {
 	var w = window,
 		d = document,
